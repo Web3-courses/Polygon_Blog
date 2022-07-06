@@ -14,8 +14,8 @@ const main = async () => {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const third = await hre.ethers.getContractFactory("MiniBlogV3");// here MiniBlog is the contract name..not the file name
-  const frst = await third.deploy();
+  const sixth = await hre.ethers.getContractFactory("MiniBlogV6");// here MiniBlog is the contract name..not the file name
+  const frst = await sixth.deploy();
 
   await frst.deployed();
 
