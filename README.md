@@ -82,5 +82,5 @@ The most important step here is to create a hardhat project. to do that do npx h
 ## Create utils folder inside client foder
 
 1. The utils should contain two sub-folders --> constants and contracts
-2. constants should contain smart contract specific address
+2. Constants folder should contain smart contract specific address
 3. Contracts folder should contain json files for the smart contracts which can be used to interact with the blockchain

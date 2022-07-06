@@ -14,12 +14,12 @@ const main = async () => {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const first = await hre.ethers.getContractFactory("MiniBlog");// here MiniBlog is the contract name..not the file name
-  const frst = await first.deploy();
+  const third = await hre.ethers.getContractFactory("MiniBlogV3");// here MiniBlog is the contract name..not the file name
+  const frst = await third.deploy();
 
   await frst.deployed();
 
-  console.log("Greeter deployed to:", frst.address);
+  console.log("Contract deployed to:", frst.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
