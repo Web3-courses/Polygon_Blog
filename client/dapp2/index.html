@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+      type="application/javascript"
+    ></script>
+    <script>
+
+        async function startWallet(){
+                 console.log('started');
+                 const provider = new ethers.providers.JsonRpcProvider();
+                 console.log('provider', provider);
+
+                 const signer = provider.getSigner(0);
+                 console.log('signer', signer);
+        }
+
+
+    </script>
+  </head>
+  <body>
+    <div id="wallet"></div>
+    <button onclick="startWallet()">click</button>
+  </body>
+</html>
