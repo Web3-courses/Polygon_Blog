@@ -63,6 +63,7 @@ The most important step here is to create a hardhat project. to do that do npx h
 ## Deploying the contract
 1. Just change the names in the sample-script.js with the contracts you want to deploy
 2. npx hardhat run scripts/sample-script.js --network mumbai
+3. BEFORE DEPLOYINg see to it that you get some test matic in your wallet
 
 ** Sometimes its advisable to remove the arguments inside contractname.deploy() to the contract go through
 ** After deployment you might get something like this : Contract deployed to: 0x67194ACaCA9e49540662D17AF7C012dF709047E4
@@ -76,3 +77,10 @@ The most important step here is to create a hardhat project. to do that do npx h
 4. View the key and copy it.
 5. Go to hardhat.config.js file in the smart-contracts folder
 6. Add the api and network details in the file.
+7. Also add the private key in the accounts
+
+## Create utils folder inside client foder
+
+1. The utils should contain two sub-folders --> constants and contracts
+2. constants should contain smart contract specific address
+3. Contracts folder should contain json files for the smart contracts which can be used to interact with the blockchain
