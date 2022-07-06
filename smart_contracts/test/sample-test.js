@@ -1,19 +1,20 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Greeter", function () {
+describe("first", function () {
   it("Should return the new greeting once it's changed", async function () {
-    const Greeter = await ethers.getContractFactory("Greeter");
-    const greeter = await Greeter.deploy("Hello, world!");
-    await greeter.deployed();
+    const first = await hre.ethers.getContractFactory("MiniBlog");// here MiniBlog is the contract name..not the file name
+    const frst = await first.deploy("Hello, Hardhat!");
+    await frst.deployed();
+    console.log('frst deployed')
 
-    expect(await greeter.greet()).to.equal("Hello, world!");
+    //expect(await greeter.greet()).to.equal("Hello, world!");
 
-    const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
+    //const setGreetingTx = await greeter.setGreeting("Hola, mundo!");
 
     // wait until the transaction is mined
-    await setGreetingTx.wait();
+    //await setGreetingTx.wait();
 
-    expect(await greeter.greet()).to.equal("Hola, mundo!");
+    //expect(await greeter.greet()).to.equal("Hola, mundo!");
   });
 });

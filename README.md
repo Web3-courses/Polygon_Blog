@@ -37,8 +37,11 @@ The most important step here is to create a hardhat project. to do that do npx h
 3. Scripts folder contains sample-script.js which contains the instructions for deploying the contract
 4. Tests folder contain an assertion test for testing whether the contract is deployed or not
 
+** You can name sample-script.js as deploy.js if needed to understand that it is the script for deployment
+
 
 ** Use npx hardhat test in the console to test whether the deployments is done without any error
+** In sample-script.js see to it that the const <contract_name> is correctly mentioned, for instance if you have created a new file called sample.sol, then it will be const sample inside the script
 
 #### Important points to be noted for smart contracts folder after test
 
@@ -56,3 +59,20 @@ The most important step here is to create a hardhat project. to do that do npx h
 
 1. Go to the contracts folder (root directory/smart_contracts/contracts)
 2. Create a new solidity file with .sol extension and name it accordingly
+
+## Deploying the contract
+1. Just change the names in the sample-script.js with the contracts you want to deploy
+2. npx hardhat run scripts/sample-script.js --network mumbai
+
+** Sometimes its advisable to remove the arguments inside contractname.deploy() to the contract go through
+** After deployment you might get something like this : Contract deployed to: 0x67194ACaCA9e49540662D17AF7C012dF709047E4
+
+
+## Using Alchemy
+
+1. Create an account if you dont have one
+2. Create an App in your dashboard
+3. Enter polygon chain and mumai testnet
+4. View the key and copy it.
+5. Go to hardhat.config.js file in the smart-contracts folder
+6. Add the api and network details in the file.
