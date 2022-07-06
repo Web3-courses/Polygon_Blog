@@ -1,0 +1,1 @@
+export const cotractAddress = '0x67194ACaCA9e49540662D17AF7C012dF709047E4';
