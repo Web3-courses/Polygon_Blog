@@ -5,14 +5,25 @@ import { ethers } from "ethers";
 import React from 'react';
 import { useState } from 'react';
 
+// Import the abis of the contract
+// The abis are the functions and variables of the contract
+// The abis are in JSON format
+import abi from './utils/contractABI/blogContractABIFinal.json';
+
+// Import the contract address
+// The address is the address of the contract
+import contractAddressList from './utils/constants/blog_constants';
+
 
 // App function --> ES6 syntax
 const App = () => {
 
   // State
 
-  const [account, setAccount] = useState('');
-  const [balance, setBalance] = useState('');
+  const [account, setAccount]   = useState('');
+  const [balance, setBalance]   = useState('');
+  const [ABI, setABI] = useState('');
+  const [address, setAddress]   = useState('');
 
 
   // Methods
@@ -27,8 +38,9 @@ const App = () => {
 
       // MetaMask requires requesting permission to connect users accounts
       await provider.send("eth_requestAccounts", []).then((res) =>{
-        console.log(res)
         setAccount(res[0]);
+        setABI(abi.abi);
+        setAddress(contractAddressList[0]);
         console.log("User has granted access to accounts")
 
       }).catch(() =>{
@@ -71,6 +83,31 @@ const App = () => {
 
   }
 
+  // Method to create the post
+  const createPost = async (title, content) =>{
+
+    console.log(title);
+    console.log(content);
+
+    // Get the provider
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+
+    // Get the signer
+
+    const signer = provider.getSigner(0)
+    
+
+    // Get the contract
+    const blogContract = new ethers.Contract(address, ABI, signer );
+
+    console.log(blogContract);
+
+    // Create the post
+    const post = await blogContract.createPost(title, content);
+
+
+  }
+
   return (
     <div className="m-auto ">
       
@@ -81,7 +118,11 @@ const App = () => {
 
 
       <p>Account  : {account}  </p><br/>
-      <p>Balances : {balance}  </p>
+      <p>Balances : {balance}  </p><br/>
+      
+      <p>address  : {address}  </p>
+
+      <button onClick={() => createPost('hai','hello')}>click</button>
 
     </div>
   );
