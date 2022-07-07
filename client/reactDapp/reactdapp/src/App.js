@@ -25,6 +25,9 @@ const App = () => {
   const [ABI, setABI] = useState('');
   const [address, setAddress]   = useState('');
 
+  // Get the number of post ids
+  const [numberOfPostIds, setNumberOfPostIds] = useState(['']);
+
 
   // Methods
   // Method to connect to the wallet
@@ -105,6 +108,16 @@ const App = () => {
     // Create the post
     const post = await blogContract.createPost(title, content);
 
+    // Display the postid
+    const latestID = await blogContract.latestPostId();
+    
+    // save the posts in the state
+    setNumberOfPostIds(arr => [...arr,latestID]);
+
+    console.log(numberOfPostIds);
+
+
+
 
   }
 
@@ -122,7 +135,9 @@ const App = () => {
       
       <p>address  : {address}  </p>
 
-      <button onClick={() => createPost('hai','hello')}>click</button>
+      <button onClick={() => createPost('hai','hello')} className="ml-5 btn btn-warning">click</button>
+
+      
 
     </div>
   );
