@@ -27,6 +27,8 @@ const App = () => {
 
   // Get the number of post ids
   const [numberOfPostIds, setNumberOfPostIds] = useState(['']);
+  // Get the posts
+  const [posts, setPosts] = useState([{title:'', content:''}]);
 
 
   // Methods
@@ -86,58 +88,114 @@ const App = () => {
 
   }
 
-  // Method to create the post
-  const createPost = async (title, content) =>{
-
-    console.log(title);
-    console.log(content);
-
-    // Get the provider
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-
-    // Get the signer
-
-    const signer = provider.getSigner(0)
+// Method for form to create a post
+const createPostFormSubmitted = async (event) =>{
     
+  event.preventDefault();
+  const newPostTitle   = event.target.title.value;
+  const newPostContent = event.target.content.value;
 
-    // Get the contract
-    const blogContract = new ethers.Contract(address, ABI, signer );
+  // Get the provider
+  const provider = new ethers.providers.Web3Provider(window.ethereum)
+  // Get the signer
+  const signer = provider.getSigner(0)  
+  // Get the contract
+  const blogContract = new ethers.Contract(address, ABI, signer );
 
-    console.log(blogContract);
+  // Create the post
+  const post = await blogContract.createPost(newPostTitle, newPostContent);
 
-    // Create the post
-    const post = await blogContract.createPost(title, content);
+  // Get the posts from the contract
+  const latestID = await blogContract.latestPostId();
+  const postDetails = await blogContract.getPostById(latestID);
+  // save the post ids in the state
+  setNumberOfPostIds(arr => [...arr,latestID]);
+  // save the posts in the state
+  setPosts(arr => [...arr,{title:postDetails.title, content:postDetails.content}]);
+  // Clear the form
+  event.target.title.value = '';
+  event.target.content.value = '';
 
-    // Display the postid
-    const latestID = await blogContract.latestPostId();
-    
-    // save the posts in the state
-    setNumberOfPostIds(arr => [...arr,latestID]);
-
-    console.log(numberOfPostIds);
-
-
-
-
-  }
+}
 
   return (
-    <div className="m-auto ">
+    <div className="m-auto" >
+
+      <div className="container-fluid">
+        <div className="row mt-2">
+          <div className="col-md-12">
+            <h1 className="text-center">Hello , Node</h1>
+          </div>
+        </div>
+
+        <div className="row mt-2">
+          <div className="col-md-6 text-center">
+            <button onClick={connectWallet} className="btn btn-primary">Connect Wallet</button><br/>
+          </div>
+
+          <div className="col-md-6 text-center">
+            <button onClick={showBalances} className="btn btn-primary mt-2">Show Balances</button>
+          </div>
+        </div> 
+
+        <div className="row mt-2">
+          <div className="col-md-6 text-center">
+          <p> ACCOUNT  : {account}  </p>
+          <p> ADDRESS  :  {address}  </p>
+          </div>
+
+          <div className="col-md-6 text-center">
+          <p> Balances : {balance}  </p>
+          </div>
+        </div>  
+
+      <hr/>  
+
+      <div className="row mt-2">
+        <div className="col-md-6">
+              <form onSubmit={createPostFormSubmitted}>
+                <div className="form-group">
+                  <label htmlFor="title">Title</label>
+                  <input type="text" className="form-control" id="title" placeholder="Title" />
+                  <small id="titleHelp" className="form-text text-muted">Enter the title of the post</small>
+                </div>
+                <div className="form-group">
+                   <label htmlFor="content">Content</label>
+                   <textarea className="form-control" id="content" rows="3"></textarea>
+                   <small id="contentHelp" className="form-text text-muted">Enter the content of the post</small>
+                </div>
+                <button type="submit" className="btn btn-primary">Create Post</button>
+              </form>
+          </div>
+      </div>
+
+      <hr/>
+
+
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+          </tr>
+        </thead>
+        <tbody>
+          {posts.map((post, index) => {
+            return (
+              <tr key={index}>
+                <td>{post.title}</td>
+                <td>{post.content}</td>
+              </tr>
+            )
+          }
+          )}
+        </tbody>
+
+      </table>
+
       
-      <p> Hello Node </p> 
 
-      <button onClick={connectWallet} className="btn btn-primary">Connect Wallet</button><br/>
-      <button onClick={showBalances} className="btn btn-primary mt-2">Show Balances</button>
-
-
-      <p>Account  : {account}  </p><br/>
-      <p>Balances : {balance}  </p><br/>
-      
-      <p>address  : {address}  </p>
-
-      <button onClick={() => createPost('hai','hello')} className="ml-5 btn btn-warning">click</button>
-
-      
+     </div>
 
     </div>
   );
