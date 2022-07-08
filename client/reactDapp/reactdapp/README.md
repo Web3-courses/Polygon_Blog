@@ -76,3 +76,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## Create a utils folder inside src so that we can import ABI and contract address
+
+1. Create a utils folder
+2. Copy the files --> blogContractABIFinal.json and blog_constants.js from the utils folder in client folder
+
+## Follow the instructions on the app.js file
+
+You should be able to see a very normal interaction interface design with the smart contracts.
