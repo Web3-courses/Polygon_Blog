@@ -1,8 +1,16 @@
-# Getting Started with Create React App
+# Instructions
+
+This file explains how the react app can actually get and create data from the smart contarcts ABI.
+
+## Create the ract app
+
+The very first step is to create the react app for our frontend
+
+### Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 

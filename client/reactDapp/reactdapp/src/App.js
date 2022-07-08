@@ -22,7 +22,7 @@ const App = () => {
 
   const [account, setAccount]   = useState('');
   const [balance, setBalance]   = useState('');
-  const [ABI, setABI] = useState('');
+  const [ABI, setABI]           = useState('');
   const [address, setAddress]   = useState('');
 
   // Get the number of post ids
@@ -107,6 +107,7 @@ const createPostFormSubmitted = async (event) =>{
 
   // Get the posts from the contract
   const latestID = await blogContract.latestPostId();
+  //const latsetIDtoNumber = latestID.toNumber();
   const postDetails = await blogContract.getPostById(latestID);
   // save the post ids in the state
   setNumberOfPostIds(arr => [...arr,latestID]);
@@ -175,6 +176,7 @@ const createPostFormSubmitted = async (event) =>{
       <table className="table">
         <thead>
           <tr>
+            <th>Index</th>
             <th>Title</th>
             <th>Content</th>
           </tr>
@@ -183,6 +185,7 @@ const createPostFormSubmitted = async (event) =>{
           {posts.map((post, index) => {
             return (
               <tr key={index}>
+                <td>{index}</td>
                 <td>{post.title}</td>
                 <td>{post.content}</td>
               </tr>
