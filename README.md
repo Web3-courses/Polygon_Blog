@@ -38,11 +38,11 @@ The most important step here is to create a hardhat project.
 3. Scripts folder contains sample-script.js which contains the instructions for deploying the contract
 4. Tests folder contain an assertion test for testing whether the contract is deployed or not
 
-** You can name sample-script.js as deploy.js if needed to understand that it is the script for deployment
+> ** You can name sample-script.js as deploy.js if needed to understand that it is the script for deployment
 
 
-** Use npx hardhat test in the console to test whether the deployments is done without any error
-** In sample-script.js see to it that the const <contract_name> is correctly mentioned, for instance if you have created a new file called sample.sol, then it will be const sample inside the script
+> ** Use npx hardhat test in the console to test whether the deployments is done without any error
+> ** In sample-script.js see to it that the const <contract_name> is correctly mentioned, for instance if you have created a new file called sample.sol, then it will be const sample inside the script
 
 #### Important points to be noted for smart contracts folder after test
 
