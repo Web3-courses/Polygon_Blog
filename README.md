@@ -28,7 +28,7 @@ npm install --save-dev hardhat @nomiclabs/hardhat-ethers 'ethers@^5.0.0' @nomicl
 
 ** some times you may need to add --force for installing the dependencies **
 
-The most important step here is to create a hardhat project. to do that do npx hardhat
+The most important step here is to create a hardhat project. to do that do > npx hardhat
 
 #### Important points to be noted for smart contracts folder after creating hardhat project
 
