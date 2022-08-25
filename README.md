@@ -26,7 +26,7 @@ or you can use single line of code
 
 npm install --save-dev hardhat @nomiclabs/hardhat-ethers 'ethers@^5.0.0' @nomiclabs/buidler @nomiclabs/hardhat-waffle 'ethereum-waffle@^3.0.0' chai
 
-** some times you may need to add --force for installing the dependencies **
+> ** some times you may need to add --force for installing the dependencies **
 
 The most important step here is to create a hardhat project.
 > npx hardhat
